@@ -1,5 +1,4 @@
 import React from "react";
-import styles from './styles/navbar.module.css'
 import Image from "next/image";
 import NavbarButton from "./NavbarButton";
 
@@ -24,7 +23,7 @@ export default function Navbar() {
                         </a>
                     </li>
                 </ul>
-                <ul className="nav_link right">
+                <ul className="nav_list right">
                     <li className="nav_list_item">Rijbewijs B</li>
                     <li className="nav_list_item">
                     <Image  
