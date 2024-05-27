@@ -1,0 +1,95 @@
+$navbarHeight: 80px;
+$tabletBreakpoint: 768px;
+$phoneBreakpoint: 576px;
+$blueColor: #88b8c2; 
+
+@font-face {
+    font-family: switzer;
+    src: url('./fonts/switzer-variable.ttf');
+}
+
+@mixin hamburger_icon {
+    .hamburger_icon {
+        display: block;
+        margin: auto 10px auto auto;
+        height: 20px;
+        width: 23px;
+        cursor: pointer;
+
+        .hamburger_span,
+        .hamburger_span::before,
+        .hamburger_span::after {
+            background: black;
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            margin-top: 8px;
+
+            -webkit-transition: 0.2s ease-in-out 0.2s;
+            -moz-transition: 0.2s ease-in-out 0.2s;
+            -o-transition: 0.2s ease-in-out 0.2s;
+            transition: 0.2s ease-in-out 0.2s;
+        }
+
+        .hamburger_span::before {
+            margin-top: -8px;
+
+            -webkit-transition: 0.2s ease-in-out;
+            -moz-transition: 0.2s ease-in-out;
+            -o-transition: 0.2s ease-in-out;
+            transition: 0.2s ease-in-out;
+        }
+
+        .hamburger_span::after {
+            margin-top: 8px;
+
+            -webkit-transition: 0.2s ease-in-out;
+            -moz-transition: 0.2s ease-in-out;
+            -o-transition: 0.2s ease-in-out;
+            transition: 0.2s ease-in-out;
+        }
+
+        &.active .hamburger_span {
+            background: transparent;
+
+            -webkit-transition: 0.3s ease-in-out;
+            -moz-transition: 0.3s ease-in-out;
+            -o-transition: 0.3s ease-in-out;
+            transition: 0.3s ease-in-out;
+
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+
+        &.active .hamburger_span::before {
+            margin-top: 0;
+
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+
+            -webkit-transition-delay: 0.3s;
+            -moz-transition-delay: 0.3s;
+            -o-transition-delay: 0.3s;
+            transition-delay: 0.3s;
+        }
+
+        &.active .hamburger_span::after {
+            margin-top: 0;
+
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+
+            -webkit-transition-delay: 0.4s;
+            -moz-transition-delay: 0.4s;
+            -o-transition-delay: 0.4s;
+            transition-delay: 0.3s;
+        }
+    }
+}

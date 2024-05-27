@@ -1,0 +1,131 @@
+@font-face {
+  font-family: switzer;
+  src: url("./fonts/switzer-variable.ttf");
+}
+.navbar {
+  height: 80px;
+  padding: 10px 30px;
+  border-bottom: 3px solid #eeeeee;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background-color: #fff;
+}
+.navbar .hamburger_icon {
+  display: none;
+  height: 70%;
+  cursor: pointer;
+  margin-left: 20px;
+  z-index: 3;
+}
+.navbar .navbar_wrapper {
+  width: 1300px;
+  margin: 0 auto;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.navbar .navbar_link {
+  color: #333;
+  font-weight: 600;
+  text-decoration: none;
+}
+.navbar .nav_list {
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-items: start;
+  height: 100%;
+  gap: 15px;
+}
+.navbar .nav_list.right {
+  margin: 0 0 0 auto;
+}
+.navbar .nav_list .nav_list_item {
+  width: fit_content;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+.navbar .nav_list .nav_list_item .profile_icon {
+  height: 80%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.navbar .nav_list .nav_list_item:has(.profile_icon) {
+  aspect-ratio: 1/1;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .navbar .navbar_links_list {
+    display: none;
+  }
+  .navbar .nav_link_right {
+    margin: unset;
+  }
+  .navbar.open .navbar_links_list {
+    position: fixed;
+    top: 80px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #fff;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 80px);
+  }
+  .navbar.open .navbar_links_list .nav_list_item {
+    width: 80%;
+    height: 50px;
+    text-align: start;
+    justify-content: start;
+    margin: 0 auto;
+    border-bottom: 2px solid #88b8c2;
+  }
+  .navbar .hamburger_icon {
+    display: block;
+    margin: auto 10px auto auto;
+    height: 20px;
+    width: 23px;
+    cursor: pointer;
+  }
+  .navbar .hamburger_icon .hamburger_span,
+  .navbar .hamburger_icon .hamburger_span::before,
+  .navbar .hamburger_icon .hamburger_span::after {
+    background: black;
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    margin-top: 8px;
+    transition: 0.2s ease-in-out 0.2s;
+  }
+  .navbar .hamburger_icon .hamburger_span::before {
+    margin-top: -8px;
+    transition: 0.2s ease-in-out;
+  }
+  .navbar .hamburger_icon .hamburger_span::after {
+    margin-top: 8px;
+    transition: 0.2s ease-in-out;
+  }
+  .navbar .hamburger_icon.active .hamburger_span {
+    background: transparent;
+    transition: 0.3s ease-in-out;
+    transform: rotate(-90deg);
+  }
+  .navbar .hamburger_icon.active .hamburger_span::before {
+    margin-top: 0;
+    transform: rotate(-45deg);
+    transition-delay: 0.3s;
+  }
+  .navbar .hamburger_icon.active .hamburger_span::after {
+    margin-top: 0;
+    transform: rotate(45deg);
+    transition-delay: 0.3s;
+  }
+}/*# sourceMappingURL=navbar.module.css.map */
