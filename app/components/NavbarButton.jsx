@@ -1,12 +1,10 @@
 'use client';
-
 import React from "react";
-import styles from './styles/navbar.module.css'
 
 export default function NavbarButton() {
     function toggleNavbar(e) {
-        const navbar = document.querySelector(".navbar_wrapper");
-        navbar.classList.toggle("active");
+        const navbar = document.querySelector(".navbar");
+        navbar.classList.toggle("open");
         const hamburger = document.querySelector(".hamburger_icon");
         hamburger.classList.toggle("active");
     }
