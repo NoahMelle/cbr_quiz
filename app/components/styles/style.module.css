@@ -15,4 +15,35 @@
 .chapter_tile:active {
   transform: scale(0.95);
   border-bottom: 3px solid #688b94;
+}
+
+.tiles_container .chapter_tile:nth-child(1) {
+  transform: translateX(-40px);
+}
+.tiles_container .chapter_tile:nth-child(2) {
+  transform: translateX(-40px);
+}
+.tiles_container .chapter_tile:nth-child(3) {
+  transform: translateX(-40px);
+}
+.tiles_container .chapter_tile:nth-child(4) {
+  transform: translateX(40px);
+}
+.tiles_container .chapter_tile:nth-child(5) {
+  transform: translateX(-40px);
+}
+.tiles_container .chapter_tile:nth-child(6) {
+  transform: translateX(-40px);
+}
+.tiles_container .chapter_tile:nth-child(7) {
+  transform: translateX(-40px);
+}
+.tiles_container .chapter_tile:nth-child(8) {
+  transform: translateX(40px);
+}
+.tiles_container .chapter_tile:nth-child(9) {
+  transform: translateX(-40px);
+}
+.tiles_container .chapter_tile:nth-child(10) {
+  transform: translateX(-40px);
 }/*# sourceMappingURL=style.module.css.map */

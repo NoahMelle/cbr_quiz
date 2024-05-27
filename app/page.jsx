@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import React from "react";
 import ChapterTile from "./components/ChapterTile";
+import componentStyles from "./components/styles/style.module.css";
 
 export default function Home() {
     const tiles = [];
@@ -9,5 +10,5 @@ export default function Home() {
         tiles.push(<ChapterTile />);
     }
 
-    return <main>{tiles}</main>;
+    return <main className={componentStyles.tiles_container}>{tiles}</main>;
 }

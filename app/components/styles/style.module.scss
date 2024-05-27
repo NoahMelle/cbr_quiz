@@ -16,3 +16,16 @@
         border-bottom: 3px solid #688b94;
     }
 }
+
+.tiles_container {
+    @for $i from 1 through 10 {
+        .chapter_tile:nth-child(#{$i}) {
+            @if $i % 4 == 0 {
+                transform: translateX(40px);
+            }
+            @else {
+                transform: translateX(-40px);
+            }
+        }
+    }
+}
