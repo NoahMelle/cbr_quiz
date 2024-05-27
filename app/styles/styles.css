@@ -2,6 +2,12 @@
   font-family: switzer;
   src: url("./fonts/switzer-variable.ttf");
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navbar {
   height: 80px;
   padding: 10px 30px;

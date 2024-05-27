@@ -1,9 +1,13 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import React from "react";
+import ChapterTile from "./components/ChapterTile";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-    </main>
-  );
+    const tiles = [];
+    for (let i = 0; i < 10; i++) {
+        tiles.push(<ChapterTile />);
+    }
+
+    return <main>{tiles}</main>;
 }
