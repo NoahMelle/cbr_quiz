@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from "./challenge.module.scss"
 
-export default function ProgressBar({  currentQuestion  }) {
-  console.log(currentQuestion);
+export default function ProgressBar({  currentQuestion  ,  score  }) {
   var progress = currentQuestion * 10;
   return (
+    <div>
     <div className={styles.progressBarTrack}>
         <div className={styles.progressBarValue} style={{width : progress + "%"}}></div>
+    </div>
+    <div>{score}</div>
     </div>  )
 }
