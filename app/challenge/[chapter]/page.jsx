@@ -16,7 +16,7 @@ export default async function page({ params }) {
             q.feedback 
         FROM questions q 
         JOIN categories c ON c.id = q.category 
-        WHERE q.type <> 1 AND q.category = ?
+        WHERE q.type <> 4 AND q.category = ?
         ORDER BY RAND() 
         LIMIT 10
 `;
