@@ -1,5 +1,6 @@
 import React from "react";
 import { connection } from "../../database/dbconnect";
+import ChallengePage from "../../components/Challenge/ChallengePage";
 
 export default async function page({ params }) {
     const query = `
@@ -25,5 +26,9 @@ export default async function page({ params }) {
 
     console.log(rows);
 
-    return <div>{params.chapter}</div>;
+    return (
+        <ChallengePage
+            rows={rows}
+        />
+    );
 }
