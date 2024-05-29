@@ -12,7 +12,12 @@ export default function ChallengePage({ rows }) {
         console.log(answer, rows[currentQuestion].options.split(",")[0]);
         if (answer === rows[currentQuestion].options.split(",")[0]) {
             alert("Correct!");
+            setCurrentQuestion(currentQuestion + 1);
         }
+    }
+
+    function slaVraagOver() {
+        setCurrentQuestion(currentQuestion + 1);
     }
 
     return (
@@ -28,6 +33,7 @@ export default function ChallengePage({ rows }) {
                         </label>
                     ))}
                 </div>
+                <button type="button" onClick={slaVraagOver}>Skip</button>
                 <button type="submit">Next</button>
             </form>
         </div>
