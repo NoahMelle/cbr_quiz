@@ -43,7 +43,7 @@ CREATE TABLE `answers` (
 CREATE TABLE `categories` (
   `id` int NOT NULL,
   `category_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
@@ -87,7 +87,7 @@ CREATE TABLE `options` (
   `id` int NOT NULL,
   `question_id` int NOT NULL,
   `option_text` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `options`
@@ -1541,7 +1541,7 @@ CREATE TABLE `questions` (
   `image` varchar(255) DEFAULT NULL,
   `question` varchar(2048) DEFAULT NULL,
   `feedback` varchar(2048) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `questions`
