@@ -1,5 +1,5 @@
 import React from "react";
-import { connection } from "../../database/dbconnect";
+import { connection } from "../../database/dbconnect.jsx";
 import ChallengePage from "../../components/Challenge/ChallengePage";
 
 export default async function page({ params }) {

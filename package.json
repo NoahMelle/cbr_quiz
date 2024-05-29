@@ -24,7 +24,7 @@
   },
   "browser": {
     "fs": false,
-    "path": false, 
+    "path": false,
     "os": false,
     "net": false,
     "tls": true
