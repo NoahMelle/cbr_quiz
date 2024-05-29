@@ -10,7 +10,6 @@ export default function ChallengePage({ rows }) {
     const [questionsAnswered, setQuestionsAnswered] = React.useState(0);
     const [currentValue, setCurrentValue] = React.useState(null);
     const [isSubmitted, setIsSubmitted] = React.useState(false);
-    var isAnswered = false;
     const [isCorrect, setIsCorrect] = React.useState(false);
     const [score, setScore] = React.useState(0);
 
@@ -19,12 +18,21 @@ export default function ChallengePage({ rows }) {
 
         const answer = currentValue;
 
+        console.log(answer, rows[currentQuestion].options.split(",")[0]);
+
         if (answer === rows[currentQuestion].options.split(",")[0]) {
             setIsCorrect(true);
         }
 
         setIsSubmitted(true);
     }
+
+    React.useEffect(() => {
+        setCurrentValue(null);
+        setIsSubmitted(false);
+        setQuestionsAnswered(prev => prev + 1);
+        setIsCorrect(false);
+    }, [currentQuestion]);
 
     function slaVraagOver() {
         setCurrentQuestion(currentQuestion + 1);
@@ -33,8 +41,6 @@ export default function ChallengePage({ rows }) {
     const isYesNo = rows[currentQuestion].options
         .split(",")
         .includes("JA" && "NEE");
-
-    console.log(currentValue);
 
     return (
         <div>
@@ -70,9 +76,10 @@ export default function ChallengePage({ rows }) {
                                     name="answer"
                                     value={option}
                                     className={styles.radioHidden}
-                                    onInput={(e) =>
+                                    onChange={(e) =>
                                         setCurrentValue(e.target.value)
                                     }
+                                    checked={currentValue === option}
                                 />
                                 {isYesNo ? (
                                     <Image
@@ -94,7 +101,18 @@ export default function ChallengePage({ rows }) {
                         ))}
                 </div>
                 {isSubmitted ? (
-                    <QuestionReview isCorrect={isCorrect} setCurrentQuestion={setCurrentQuestion} currentQuestion={currentQuestion} setQuestionsAnswered={setQuestionsAnswered} questionsAnswered={questionsAnswered} setScore={setScore} score={score} />
+                    <QuestionReview
+                        isCorrect={isCorrect}
+                        setCurrentQuestion={setCurrentQuestion}
+                        currentQuestion={currentQuestion}
+                        setQuestionsAnswered={setQuestionsAnswered}
+                        questionsAnswered={questionsAnswered}
+                        setScore={setScore}
+                        score={score}
+                        setIsSubmitted={setIsSubmitted}
+                        setCurrentValue={setCurrentValue}
+                        rows={rows}
+                    />
                 ) : (
                     <>
                         <button type="button" onClick={slaVraagOver}>

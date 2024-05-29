@@ -3,6 +3,7 @@
 import React, { act } from "react";
 import styles from "./styles/style.module.css";
 import Image from "next/image";
+import { decode } from "html-entities";
 import Link from "next/link";
 
 export default function ChapterTile({
@@ -38,7 +39,7 @@ export default function ChapterTile({
                     activeTile === tileId ? "" : styles.hidden_tile,
                 ].join(" ")}
             >
-                <h3>{chapter.chapter}</h3>
+                <h3>{decode(chapter.chapter)}</h3>
                 <Link className={styles.start_challenge_button} href={newhref}>
                     Start Challenge
                 </Link>

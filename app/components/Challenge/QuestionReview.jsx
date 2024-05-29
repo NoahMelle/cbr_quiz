@@ -4,21 +4,23 @@ export default function QuestionReview({
     isCorrect,
     setCurrentQuestion,
     currentQuestion,
-    setQuestionsAnswered,
-    questionsAnswered,
     setScore,
-    score,
+    setIsSubmitted,
+    rows
 }) {
     function nextQuestion(e) {
-        setCurrentQuestion(currentQuestion + 1);
-        setQuestionsAnswered(questionsAnswered + 1);
-        setScore(score + 100);
+        if (isCorrect) {
+            setScore(prev => prev + 100);
+        
+        }
+        setCurrentQuestion(prev => prev + 1);
+        setIsSubmitted(false);
     }
 
     return (
         <div>
             <p>{isCorrect ? "correct" : "incorrect"}</p>
-            <p>de feedback </p>
+            <p>{rows[currentQuestion].feedback}</p>
             <button type="button" onClick={nextQuestion}>Verder</button>
         </div>
     );
