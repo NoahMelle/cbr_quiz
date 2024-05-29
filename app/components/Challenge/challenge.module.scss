@@ -1,0 +1,41 @@
+.progressBarTrack {
+    margin: 30px auto;
+    position: relative;
+    width: 90%;
+    height: 20px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+}
+
+.progressBarValue {
+    background-color: #89b0ba;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.2s;
+    width: 50%;
+    position: relative;
+}
+
+.progressBarValue::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 16%;
+    width: calc(100% - 20px);
+    height: 20%;
+    left:50%; 
+    transform:translate(-50%, 0); 
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    border-radius: 10px;
+}
+
+.questionImage {
+    object-fit: contain;
+    max-width: 100%;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.radioHidden {
+    display: none;
+}
