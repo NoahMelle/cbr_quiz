@@ -64,9 +64,6 @@
     }
 }
 
-.radioHidden:checked + .labelSpan {
-}
-
 .labelForRadio:has(.radioHidden:checked) {
     @include duolingo_button(#98c3ce, 10px, 4px);
     &:active {
