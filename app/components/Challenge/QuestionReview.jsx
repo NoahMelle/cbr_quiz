@@ -1,5 +1,5 @@
 import React from "react";
-export default function QuestionReview({ isCorrect  }){
+export default function QuestionReview({ isCorrect }){
     function nextQuestion(){
         setCurrentQuestion(currentQuestion + 1);
         setQuestionsAnswered(questionsAnswered + 1);
