@@ -28,7 +28,7 @@ export default function ChallengePage({ rows }) {
 
     return (
         <div>
-            <ProgressBar />
+            <ProgressBar currentQuestion={currentQuestion} />
             <form action="#" onSubmit={checkAnswer}>
                 <h2>{rows[currentQuestion].question}</h2>
                 <img src={`/assets/img/questions/${rows[currentQuestion].image}`} className={styles.questionImage} alt="" />
