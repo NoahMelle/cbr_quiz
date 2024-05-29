@@ -14,7 +14,7 @@ export default function ChapterTile({
     function showTile(e) {
         activeTile === tileId ? setActiveTile(null) : setActiveTile(tileId);
     }
-
+    var newhref = "./challenge/" + tileId;
     return (
         <div className={styles.chapter_tile_wrapper}>
             <button
@@ -38,7 +38,7 @@ export default function ChapterTile({
                 ].join(" ")}
             >
                 <h3>{chapter.chapter}</h3>
-                <Link className={styles.start_challenge_button} href="#">
+                <Link className={styles.start_challenge_button} href={newhref}>
                     Start Challenge
                 </Link>
             </div>

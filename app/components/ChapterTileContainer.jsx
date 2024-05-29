@@ -1,10 +1,10 @@
 "use client";
-
 import React from "react";
 import styles from "./styles/style.module.css";
 import ChapterTile from "./ChapterTile";
 
-export default function ChapterTileContainer() {
+export default function ChapterTileContainer({ rows }) {
+    console.log(rows)
     const data = [
         {
             category: "A",
@@ -125,11 +125,11 @@ export default function ChapterTileContainer() {
         console.log(activeTile)
     }, [activeTile])
 
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < rows.length; i++) {
         tiles.push(
             <ChapterTile
                 key={i}
-                chapter={data[i]}
+                chapter={rows[i]}
                 activeTile={activeTile}
                 setActiveTile={setActiveTile}
                 tileId={i}
