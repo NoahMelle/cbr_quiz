@@ -14,7 +14,8 @@ export default function ChapterTile({
     function showTile(e) {
         activeTile === tileId ? setActiveTile(null) : setActiveTile(tileId);
     }
-    var newhref = "./challenge/" + tileId;
+    var newTileId = tileId + 1
+    var newhref = "./challenge/" + newTileId;
     return (
         <div className={styles.chapter_tile_wrapper}>
             <button
