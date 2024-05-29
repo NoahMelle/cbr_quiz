@@ -38,7 +38,7 @@ export default function ChallengePage({ rows }) {
 
   return (
     <div>
-      <ProgressBar currentQuestion={currentQuestion} />
+      <ProgressBar currentQuestion={currentQuestion} score={score} />
       <form
         action="#"
         onSubmit={checkAnswer}
@@ -90,7 +90,7 @@ export default function ChallengePage({ rows }) {
             ))}
         </div>
         {isSubmitted ? (
-          <QuestionReview isCorrect={isCorrect}/>
+          <QuestionReview isCorrect={isCorrect} setCurrentQuestion={setCurrentQuestion} currentQuestion={currentQuestion} setQuestionsAnswered={setQuestionsAnswered} questionsAnswered={questionsAnswered} setScore={setScore} score={score} />
         ) : (
           <>
             <button type="button" onClick={slaVraagOver}>
