@@ -12,6 +12,7 @@ export default function ChallengePage({ rows }) {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   var isAnswered = false;
   const [isCorrect, setIsCorrect] = React.useState(false)
+  const [score, setScore] = React.useState(0);
 
   function checkAnswer(event) {
     event.preventDefault();
