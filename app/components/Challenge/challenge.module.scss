@@ -1,3 +1,5 @@
+@import '../styles/style.module.scss';
+
 .progressBarTrack {
     margin: 30px auto;
     position: relative;
@@ -38,4 +40,25 @@
 
 .radioHidden {
     display: none;
+}
+
+.labelForRadio {
+    padding: 10px;
+    display: block;
+}
+
+.radioContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    &.isBoolean {
+        flex-direction: row;
+    }
+    .labelForRadio {
+        @include duolingo_button(#ffffff, 10px, 4px);
+    }
+}
+
+.radioHidden:checked + .labelForRadio {
+    @include duolingo_button(#89b0ba, 10px, 4px);
 }
