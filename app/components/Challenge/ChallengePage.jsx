@@ -38,9 +38,15 @@ export default function ChallengePage({ rows }) {
 
   return (
     <div>
-      <ProgressBar questionsAnswered={questionsAnswered} />
-      <form action="#" onSubmit={checkAnswer}>
-        <h2>{rows[currentQuestion].question}</h2>
+      <ProgressBar currentQuestion={currentQuestion} />
+      <form
+        action="#"
+        onSubmit={checkAnswer}
+        className={styles.questionForm}
+      >
+        <h2 className={styles.questionHeader}>
+          {rows[currentQuestion].question}
+        </h2>
         <img
           src={`/assets/img/questions/${rows[currentQuestion].image}`}
           className={styles.questionImage}
@@ -52,24 +58,41 @@ export default function ChallengePage({ rows }) {
             styles.radioContainer,
           ].join(" ")}
         >
-          {rows[currentQuestion].options.split(",").map((option, index) => (
-            <label key={index}>
-              <input
-                type="radio"
-                name="answer"
-                value={option}
-                className={styles.radioHidden}
-                onInput={(e) => setCurrentValue(e.target.value)}
-              />
-              <span className={[styles.labelForRadio].join(" ")}>{option}</span>
-            </label>
-          ))}
+          {rows[currentQuestion].options
+            .split(",")
+            .map((option, index) => (
+              <label
+                key={index}
+                className={[styles.labelForRadio].join(" ")}
+              >
+                <input
+                  type="radio"
+                  name="answer"
+                  value={option}
+                  className={styles.radioHidden}
+                  onInput={(e) => setCurrentValue(e.target.value)}
+                />
+                {isYesNo ? (
+                  <Image
+                    src={
+                      option === "JA"
+                        ? "/assets/img/vectors/check_circle_24dp_FILL0_wght300_GRAD0_opsz24.svg"
+                        : "/assets/img/vectors/cancel_24dp_FILL0_wght300_GRAD0_opsz24.svg"
+                    }
+                    width={100}
+                    height={100}
+                  />
+                ) : (
+                  ""
+                )}
+                <span className={styles.labelSpan}>{option}</span>
+              </label>
+            ))}
         </div>
         {isSubmitted ? (
           <QuestionReview isCorrect={isCorrect}/>
         ) : (
           <>
-            {" "}
             <button type="button" onClick={slaVraagOver}>
               Overslaan
             </button>
