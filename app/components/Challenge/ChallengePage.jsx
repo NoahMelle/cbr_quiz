@@ -19,10 +19,7 @@ export default function ChallengePage({ rows }) {
     const answer = currentValue;
 
     if (answer === rows[currentQuestion].options.split(",")[0]) {
-        setIsCorrect = true;
-    //   alert("Correct!");
-    //   setCurrentQuestion(currentQuestion + 1);
-    //   setQuestionsAnswered(questionsAnswered + 1);
+        setIsCorrect(true);
     }
 
     setIsSubmitted(true)
