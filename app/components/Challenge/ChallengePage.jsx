@@ -2,7 +2,7 @@
 import React from "react";
 import ProgressBar from "./ProgressBar";
 import Image from "next/image";
-import styles from './challenge.module.scss';
+import styles from "./challenge.module.scss";
 
 export default function ChallengePage({ rows }) {
     const [currentQuestion, setCurrentQuestion] = React.useState(0);
@@ -26,13 +26,29 @@ export default function ChallengePage({ rows }) {
         setCurrentQuestion(currentQuestion + 1);
     }
 
+    console.log(rows[currentQuestion].type);
+
+    const isYesNo = rows[currentQuestion].options
+        .split(",")
+        .includes("JA" && "NEE");
+    console.log(isYesNo);
+
     return (
         <div>
             <ProgressBar currentQuestion={currentQuestion} />
             <form action="#" onSubmit={checkAnswer}>
                 <h2>{rows[currentQuestion].question}</h2>
-                <img src={`/assets/img/questions/${rows[currentQuestion].image}`} className={styles.questionImage} alt="" />
-                <div>
+                <img
+                    src={`/assets/img/questions/${rows[currentQuestion].image}`}
+                    className={styles.questionImage}
+                    alt=""
+                />
+                <div
+                    className={[
+                        isYesNo ? styles.isBoolean : "",
+                        styles.radioContainer,
+                    ].join(" ")}
+                >
                     {rows[currentQuestion].options
                         .split(",")
                         .map((option, index) => (
@@ -43,7 +59,11 @@ export default function ChallengePage({ rows }) {
                                     value={option}
                                     className={styles.radioHidden}
                                 />
-                                {option}
+                                <span
+                                    className={[styles.labelForRadio].join(" ")}
+                                >
+                                    {option}
+                                </span>
                             </label>
                         ))}
                 </div>
