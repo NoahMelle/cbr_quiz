@@ -1,18 +1,132 @@
+@use 'sass:math';
+@use 'sass:color';
+
+$itemsPerSide: 5;
+$sineStrength: 15;
+
+@mixin duolingo_button($color, $borderRadius, $height) {
+    background-color: $color;
+    border: 2px solid darken($color, 10%);
+    border-bottom: $height solid darken($color, 10%);
+    border-radius: $borderRadius;
+}
+
 .chapter_tile {
     width: 60px;
     height: 60px;
-    border-radius: 50%;
-    border: 2px solid #688b94;
-    border-bottom: 6px solid #688b94;
+    @include duolingo_button(#89b0ba, 50%, 6px);
     margin: 10px;
-    transition: all 0.1s;
+    transition: all 0.2s;
     background-color: #89b0ba;
     display: flex;
     align-items: center;
+    cursor: pointer;
     justify-content: center;
     padding: 12px 16px;
+    &[aria-pressed='true'] {
+        @include duolingo_button(#a289ba, 50%, 6px);
+    }
     &:active {
         transform: scale(0.95);
-        border-bottom: 3px solid #688b94;
+        border-bottom: 2px solid darken(#89b0ba, 10%);
+    }
+}
+
+.tiles_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 200px;
+    .chapter_tile_wrapper {
+        position: relative;
+    }
+    @for $i from 1 through 27 {
+        .chapter_tile_wrapper:nth-child(#{$i}) {
+            $sinValue: math.sin(calc($i / $itemsPerSide) * math.$pi);
+            @if $sinValue > 0 {
+                margin-right: #{math.abs(($sinValue * 10 * $sineStrength) - 10)}px;
+            } @else {
+                margin-left: #{math.abs(($sinValue * 10 * $sineStrength) - 10)}px;
+            }
+        }
+    }
+}
+
+.chapter_tile_content {
+    display: block;
+    position: absolute;
+    @include duolingo_button(#89baa6, 20px, 6px);
+    z-index: 2;
+    width: 300px;
+    word-wrap: break-word;
+    color: white;
+    padding: 10px;
+    left: 50%;
+    transition: transform 0.2s;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0) scale(1);
+    transform-origin: top center;
+    animation: delay 0.2s forwards;
+    h3 {
+        margin: 15px;
+        text-align: center;
+    }
+}
+
+.hidden_tile {
+    visibility: hidden;
+    transform: translate(-50%, 0) scale(0);
+    transition: transform 0.2s;
+    animation: delayReverse 0.2s forwards;
+}
+
+.start_challenge_button {
+    @include duolingo_button(#fafafa, 10px, 4px);
+    display: block;
+    padding: 10px 20px;
+    color: rgb(61, 61, 61);
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .chapter_tile {
+        width: 50px;
+        height: 50px;
+        padding: 10px 14px;
+        // &[aria-pressed='true'] {
+        //     @include duolingo_button(#a289ba, 50%, 6px);
+        //     transform: scale(0.95);
+        //     border-bottom-width: 3px;
+        // }
+    }
+    .chapter_tile_content {
+        position: fixed;
+        width: 90vw;
+        left: 5vw;
+        transform: unset;
+        bottom: 5vw;
+    }
+}
+
+@keyframes delay {
+    from {
+        visibility: hidden;
+    }
+    to {
+        visibility: visible;
+    }
+}
+
+@keyframes delayReverse {
+    from {
+        visibility: visible;
+        opacity: 1;
+    }
+    to {
+        visibility: hidden;
+        opacity: 0;
     }
 }
