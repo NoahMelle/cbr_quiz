@@ -1,5 +1,5 @@
 import React from 'react';
-import dbconnect from '../database/dbconnect';
+import dbconnect from '../database/dbconnect.jsx';
 
 export default async function Home() {
     console.log(await dbconnect)
