@@ -13,7 +13,8 @@ export default function ChallengePage({ rows }) {
     const [isSubmitted, setIsSubmitted] = React.useState(false);
     const [isCorrect, setIsCorrect] = React.useState(false);
     const [score, setScore] = React.useState(0);
-    const shuffledOptions = React.useRef([]);
+    const [options, setOptions] = React.useState([]);
+    const [shuffledOptions, setShuffledOptions] = React.useState([]);
 
     function checkAnswer(event) {
         event.preventDefault();
@@ -31,12 +32,12 @@ export default function ChallengePage({ rows }) {
     }
 
     React.useEffect(() => {
+        console.log("setting options")
         setCurrentValue(null);
         setIsSubmitted(false);
-        setQuestionsAnswered((prev) => prev + 1);
         setIsCorrect(false);
-        shuffledOptions.current = options.includes("JA" && "NEE") ? ["JA", "NEE"] : shuffleArray(options);
-    }, [currentQuestion]);
+        setShuffledOptions(options.includes("JA" && "NEE") ? ["JA", "NEE"] : shuffleArray(options))
+    }, [options]);
 
     function shuffleArray(array) {
         const shuffledArray = [...array];
@@ -47,6 +48,8 @@ export default function ChallengePage({ rows }) {
         return shuffledArray;
     }
 
+    console.log(currentQuestion, questionsAnswered)
+
     function slaVraagOver() {
         setCurrentQuestion(currentQuestion + 1);
     }
@@ -55,13 +58,14 @@ export default function ChallengePage({ rows }) {
         .split("----------")
         .includes("JA" && "NEE");
 
-    const options = isYesNo
-        ? ["JA", "NEE"]
-        : rows[currentQuestion].options.split("----------");
+    React.useEffect(() => {
+        setOptions(rows[currentQuestion].options.split("----------"));
+        console.log("setting options")
+    }, [currentQuestion]);
 
     return (
         <div>
-            <ProgressBar currentQuestion={currentQuestion} score={score} />
+            <ProgressBar currentQuestion={questionsAnswered} score={score} />
             <form
                 action="#"
                 onSubmit={checkAnswer}
@@ -81,7 +85,7 @@ export default function ChallengePage({ rows }) {
                         styles.radioContainer,
                     ].join(" ")}
                 >
-                    {shuffledOptions.current.map((option, index) => (
+                    {shuffledOptions.map((option, index) => (
                         <label
                             key={index}
                             className={[
