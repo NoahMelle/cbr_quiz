@@ -15,6 +15,7 @@ export default function QuestionReview({
         if (isCorrect) {
             setScore((prev) => prev + 100);
         }
+
         setCurrentQuestion((prev) => prev + 1);
         setIsSubmitted(false);
         setQuestionsAnswered((prev) => prev + 1);
