@@ -1,4 +1,6 @@
 import React from "react";
+import { decode } from "html-entities";
+import styles from "./challenge.module.scss";
 
 export default function QuestionReview({
     isCorrect,
@@ -18,9 +20,9 @@ export default function QuestionReview({
     }
 
     return (
-        <div>
-            <p>{isCorrect ? "correct" : "incorrect"}</p>
-            <p>{rows[currentQuestion].feedback}</p>
+        <div className={styles.questionReviewContainer}>
+            <h3 className={styles.correctText}>{isCorrect ? "Correct!" : "Incorrect!"}</h3>
+            <p>{decode(rows[currentQuestion].feedback)}</p>
             <button type="button" onClick={nextQuestion}>Verder</button>
         </div>
     );
