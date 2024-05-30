@@ -14,6 +14,7 @@ export default function QuestionReview({
         
         }
         setCurrentQuestion(prev => prev + 1);
+        console.log("question check " + currentQuestion);
         setIsSubmitted(false);
     }
 
