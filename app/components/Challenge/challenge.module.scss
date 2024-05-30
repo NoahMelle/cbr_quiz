@@ -75,6 +75,21 @@
 
 }
 
+.labelForRadio:has(.radioHidden:checked) {
+    &.ja {
+        @include duolingo_button(#98ce98, 10px, 4px);
+    }
+    &.nee {
+        @include duolingo_button(#f8a8a8, 10px, 4px);
+    }
+    &.labelCorrect {
+        @include duolingo_button(#98ce98, 10px, 4px);
+    }
+    &.labelIncorrect {
+        @include duolingo_button(#f8a8a8, 10px, 4px);
+    }
+}
+
 .questionForm {
     width: 700px;
     max-width: 80%;
@@ -87,4 +102,31 @@
 
 .questionHeader {
     text-align: center;
+}
+
+.questionReviewContainer {
+    height: 350px;
+    background-color: #4b4b4b;
+    color: #eeeeee;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    padding: 30px;
+    animation: slideInFromBottom 0.5s ease;
+    border-radius: 30px 30px 0 0;
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.correctText {
+    font-weight: 800;
+    font-size: 30px;
 }

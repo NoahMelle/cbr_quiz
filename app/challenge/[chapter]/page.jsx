@@ -10,14 +10,14 @@ export default async function page({ params }) {
             q.image, 
             q.question, 
             (
-                SELECT GROUP_CONCAT(o.option_text) 
+                SELECT GROUP_CONCAT(o.option_text SEPARATOR '----------') 
                 FROM options o 
                 WHERE o.question_id = q.id
             ) AS options,
             q.feedback 
         FROM questions q 
         JOIN categories c ON c.id = q.category 
-        WHERE q.type <> 4 AND q.category = ?
+        WHERE q.type <> 4 AND q.category = ? AND disabled = 0
         ORDER BY RAND() 
         LIMIT 10
 `;

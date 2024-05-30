@@ -5,14 +5,8 @@ import ChapterTile from "./ChapterTile";
 import { decode } from "html-entities";
 
 export default function ChapterTileContainer({ rows }) {
-    console.log(rows)
-
     const [activeTile, setActiveTile] = React.useState(null);
     const tiles = [];
-
-    React.useEffect(() => {
-        console.log(activeTile)
-    }, [activeTile])
 
     for (let i = 0; i < rows.length; i++) {
         tiles.push(

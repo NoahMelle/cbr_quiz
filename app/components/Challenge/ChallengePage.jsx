@@ -4,6 +4,7 @@ import ProgressBar from "./ProgressBar";
 import Image from "next/image";
 import styles from "./challenge.module.scss";
 import QuestionReview from "./QuestionReview";
+import { decode } from "html-entities";
 
 export default function ChallengePage({ rows }) {
     const [currentQuestion, setCurrentQuestion] = React.useState(0);
@@ -12,15 +13,17 @@ export default function ChallengePage({ rows }) {
     const [isSubmitted, setIsSubmitted] = React.useState(false);
     const [isCorrect, setIsCorrect] = React.useState(false);
     const [score, setScore] = React.useState(0);
+    const shuffledOptions = React.useRef([]);
 
     function checkAnswer(event) {
         event.preventDefault();
 
         const answer = currentValue;
 
-        console.log(answer, rows[currentQuestion].options.split(",")[0]);
-
-        if (answer === rows[currentQuestion].options.split(",")[0]) {
+        if (
+            answer.toLowerCase() ===
+            rows[currentQuestion].options.split("----------")[0].toLowerCase()
+        ) {
             setIsCorrect(true);
         }
 
@@ -30,17 +33,31 @@ export default function ChallengePage({ rows }) {
     React.useEffect(() => {
         setCurrentValue(null);
         setIsSubmitted(false);
-        setQuestionsAnswered(prev => prev + 1);
+        setQuestionsAnswered((prev) => prev + 1);
         setIsCorrect(false);
+        shuffledOptions.current = options.includes("JA" && "NEE") ? ["JA", "NEE"] : shuffleArray(options);
     }, [currentQuestion]);
+
+    function shuffleArray(array) {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+        return shuffledArray;
+    }
 
     function slaVraagOver() {
         setCurrentQuestion(currentQuestion + 1);
     }
 
     const isYesNo = rows[currentQuestion].options
-        .split(",")
+        .split("----------")
         .includes("JA" && "NEE");
+
+    const options = isYesNo
+        ? ["JA", "NEE"]
+        : rows[currentQuestion].options.split("----------");
 
     return (
         <div>
@@ -51,7 +68,7 @@ export default function ChallengePage({ rows }) {
                 className={styles.questionForm}
             >
                 <h2 className={styles.questionHeader}>
-                    {rows[currentQuestion].question}
+                    {decode(rows[currentQuestion].question)}
                 </h2>
                 <img
                     src={`/assets/img/questions/${rows[currentQuestion].image}`}
@@ -64,41 +81,52 @@ export default function ChallengePage({ rows }) {
                         styles.radioContainer,
                     ].join(" ")}
                 >
-                    {rows[currentQuestion].options
-                        .split(",")
-                        .map((option, index) => (
-                            <label
-                                key={index}
-                                className={[styles.labelForRadio].join(" ")}
-                            >
-                                <input
-                                    type="radio"
-                                    name="answer"
-                                    value={option}
-                                    className={styles.radioHidden}
-                                    onChange={(e) =>
-                                        setCurrentValue(e.target.value)
+                    {shuffledOptions.current.map((option, index) => (
+                        <label
+                            key={index}
+                            className={[
+                                styles.labelForRadio,
+                                isYesNo
+                                    ? option === "JA"
+                                        ? styles.ja
+                                        : styles.nee
+                                    : "",
+                                isSubmitted
+                                    ? isCorrect
+                                        ? styles.labelCorrect
+                                        : styles.labelIncorrect
+                                    : "",
+                            ].join(" ")}
+                        >
+                            <input
+                                type="radio"
+                                name="answer"
+                                value={option}
+                                className={styles.radioHidden}
+                                onChange={(e) =>
+                                    setCurrentValue(e.target.value)
+                                }
+                                checked={currentValue === option}
+                            />
+                            {isYesNo ? (
+                                <Image
+                                    src={
+                                        option === "JA"
+                                            ? "/assets/img/vectors/check_circle_24dp_FILL0_wght300_GRAD0_opsz24.svg"
+                                            : "/assets/img/vectors/cancel_24dp_FILL0_wght300_GRAD0_opsz24.svg"
                                     }
-                                    checked={currentValue === option}
+                                    width={100}
+                                    height={100}
+                                    alt={option === "JA" ? "check" : "cross"}
                                 />
-                                {isYesNo ? (
-                                    <Image
-                                        src={
-                                            option === "JA"
-                                                ? "/assets/img/vectors/check_circle_24dp_FILL0_wght300_GRAD0_opsz24.svg"
-                                                : "/assets/img/vectors/cancel_24dp_FILL0_wght300_GRAD0_opsz24.svg"
-                                        }
-                                        width={100}
-                                        height={100}
-                                    />
-                                ) : (
-                                    ""
-                                )}
-                                <span className={styles.labelSpan}>
-                                    {option}
-                                </span>
-                            </label>
-                        ))}
+                            ) : (
+                                ""
+                            )}
+                            <span className={styles.labelSpan}>
+                                {decode(option)}
+                            </span>
+                        </label>
+                    ))}
                 </div>
                 {isSubmitted ? (
                     <QuestionReview
