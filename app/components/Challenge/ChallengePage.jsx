@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./challenge.module.scss";
 import QuestionReview from "./QuestionReview";
 import { decode } from "html-entities";
+import Countdown from "./Countdown";
 
 export default function ChallengePage({ rows }) {
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
@@ -16,6 +17,7 @@ export default function ChallengePage({ rows }) {
   const [options, setOptions] = React.useState([]);
   const [shuffledOptions, setShuffledOptions] = React.useState([]);
   const [atFinalQuestion, setAtFinalQuestion] = React.useState(false);
+  const [timeUp, setTimeUp] = React.useState(false);
 
   function checkAnswer(event) {
     event.preventDefault();
@@ -86,6 +88,7 @@ export default function ChallengePage({ rows }) {
       ) : (
         <div>
           <ProgressBar currentQuestion={questionsAnswered} score={score} />
+          <Countdown timeUp={timeUp} setTimeUp={setTimeUp}/>
 
           <form
             action="#"
