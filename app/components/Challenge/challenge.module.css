@@ -116,12 +116,6 @@
 .tiles_container .chapter_tile_wrapper:nth-child(27) {
   margin-left: 152.6584774443px;
 }
-.tiles_container .chapter_tile_wrapper:nth-child(28) {
-  margin-left: 152.6584774443px;
-}
-.tiles_container .chapter_tile_wrapper:nth-child(29) {
-  margin-left: 98.1677878439px;
-}
 
 .chapter_tile_content {
   display: block;
@@ -232,7 +226,7 @@
     transform: translate(80%, 0%);
   }
   50% {
-    transform: translate(60%, 30%);
+    transform: translate(60%, 15%);
   }
   100% {
     transform: translate(80%, 0%);
@@ -255,4 +249,173 @@
     visibility: hidden;
     opacity: 0;
   }
-}/*# sourceMappingURL=style.module.css.map */
+}
+.progressBarTrack {
+  margin: 30px auto;
+  position: relative;
+  width: 90%;
+  height: 20px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+}
+
+.progressBarValue {
+  background-color: #89b0ba;
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.2s;
+  width: 50%;
+  position: relative;
+}
+
+.progressBarValue::after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 16%;
+  width: calc(100% - 20px);
+  height: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+  border-radius: 10px;
+}
+
+.questionImage {
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-width: 100%;
+  width: 300px;
+  border-radius: 10px;
+  max-height: 300px;
+}
+
+.radioHidden {
+  display: none !important;
+}
+
+.labelForRadio {
+  padding: 10px;
+  display: block;
+}
+.labelForRadio * {
+  display: block;
+}
+
+.radioContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.radioContainer.isBoolean {
+  flex-direction: row;
+}
+.radioContainer .labelForRadio {
+  transition: 0.2s ease;
+  background-color: #ffffff;
+  border: 2px solid #e6e6e6;
+  border-bottom: 4px solid #e6e6e6;
+  border-radius: 10px;
+}
+
+.labelForRadio:has(.radioHidden:checked) {
+  background-color: #98c3ce;
+  border: 2px solid #75afbe;
+  border-bottom: 4px solid #75afbe;
+  border-radius: 10px;
+}
+.labelForRadio:has(.radioHidden:checked):active {
+  border-bottom-width: 2px !important;
+}
+
+.labelForRadio:has(.radioHidden:checked).ja {
+  background-color: #98ce98;
+  border: 2px solid #75be75;
+  border-bottom: 4px solid #75be75;
+  border-radius: 10px;
+}
+.labelForRadio:has(.radioHidden:checked).nee {
+  background-color: #f8a8a8;
+  border: 2px solid #f47979;
+  border-bottom: 4px solid #f47979;
+  border-radius: 10px;
+}
+.labelForRadio:has(.radioHidden:checked).labelCorrect {
+  background-color: #98ce98;
+  border: 2px solid #75be75;
+  border-bottom: 4px solid #75be75;
+  border-radius: 10px;
+}
+.labelForRadio:has(.radioHidden:checked).labelIncorrect {
+  background-color: #f8a8a8;
+  border: 2px solid #f47979;
+  border-bottom: 4px solid #f47979;
+  border-radius: 10px;
+}
+
+.questionForm {
+  width: 700px;
+  max-width: 80%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.questionHeader {
+  text-align: center;
+}
+
+.questionReviewContainer {
+  height: 350px;
+  color: #333333;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  flex-direction: column;
+  left: 0;
+  padding: 30px;
+  display: flex;
+  animation: slideInFromBottom 0.5s ease;
+  border-radius: 30px 30px 0 0;
+  border-top: 4px solid #686868;
+}
+.questionReviewContainer.correct {
+  background-color: #98ce98;
+  border-top-color: #53ad53;
+}
+.questionReviewContainer.inCorrect {
+  background-color: #f8a8a8;
+  border-top-color: #f04a4a;
+}
+
+.formActionButton {
+  background-color: #ffffff;
+  border: 2px solid #e6e6e6;
+  border-bottom: 4px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 7px 20px;
+  font-size: inherit;
+  font-family: inherit;
+  align-self: flex-end;
+  margin: auto 0 0 0;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.correctText {
+  font-weight: 800;
+  font-size: 30px;
+}
+
+.carsContainer {
+  width: 100%;
+  height: 100%;
+}/*# sourceMappingURL=challenge.module.css.map */
