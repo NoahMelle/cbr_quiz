@@ -37,10 +37,11 @@ $sineStrength: 15;
     flex-direction: column;
     align-items: center;
     padding-bottom: 200px;
+    position: relative;
     .chapter_tile_wrapper {
         position: relative;
     }
-    @for $i from 1 through 27 {
+    @for $i from 1 through 29 {
         .chapter_tile_wrapper:nth-child(#{$i}) {
             $sinValue: math.sin(calc($i / $itemsPerSide) * math.$pi);
             @if $sinValue > 0 {
@@ -108,6 +109,49 @@ $sineStrength: 15;
         left: 5vw;
         transform: unset;
         bottom: 5vw;
+    }
+}
+
+.carsBackground {
+    position: absolute;
+    left: 0;
+    transform: translate(80%, 0);
+    max-width: 60vw;
+    object-fit: contain;
+    animation: carMoveOtherDirection 7s infinite;
+    &:nth-child(odd) {
+        transform: translate(-80%, 0);
+        animation: carMove 7s infinite;
+    }
+    @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {    
+            animation-delay: #{($i - 1) * 1}s;
+            top: #{8 + (($i - 1) * 17) + '%'};
+        }
+    }
+}
+
+@keyframes carMove {
+    0% {
+        transform: translate(-80%, 0%);
+    }
+    50% {
+        transform: translate(-60%, 15%);
+    }
+    100% {
+        transform: translate(-80%, 0%);
+    }
+}
+
+@keyframes carMoveOtherDirection {
+    0% {
+        transform: translate(80%, 0%);
+    }
+    50% {
+        transform: translate(60%, 30%);
+    }
+    100% {
+        transform: translate(80%, 0%);
     }
 }
 

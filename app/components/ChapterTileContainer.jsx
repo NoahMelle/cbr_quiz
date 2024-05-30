@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./styles/style.module.css";
 import ChapterTile from "./ChapterTile";
+import Image from "next/image";
 import { decode } from "html-entities";
 
 export default function ChapterTileContainer({ rows }) {
@@ -20,5 +21,30 @@ export default function ChapterTileContainer({ rows }) {
         );
     }
 
-    return <div className={styles.tiles_container}>{tiles}</div>;
+    return (
+        <div className={styles.tiles_container}>
+            <Image
+                src={"/assets/img/misc/cars1.png"}
+                alt="cars background"
+                height={200}
+                width={200}
+                className={styles.carsBackground}
+            />
+            <Image
+                src={"/assets/img/misc/cars2.png"}
+                alt="cars background"
+                height={200}
+                width={200}
+                className={styles.carsBackground}
+            />
+            <Image
+                src={"/assets/img/misc/cars3.png"}
+                alt="cars background"
+                height={200}
+                width={200}
+                className={styles.carsBackground}
+            />
+            {tiles}
+        </div>
+    );
 }
