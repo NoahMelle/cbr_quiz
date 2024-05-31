@@ -44,6 +44,13 @@ export default function ChapterTileContainer({ rows }) {
                 width={200}
                 className={styles.carsBackground}
             />
+            <Image
+                src={"/assets/img/misc/cars4.png"}
+                alt="cars background"
+                height={200}
+                width={200}
+                className={styles.carsBackground}
+            />
             {tiles}
         </div>
     );

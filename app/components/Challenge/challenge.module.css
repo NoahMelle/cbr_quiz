@@ -440,6 +440,20 @@
   font-size: 30px;
 }
 
+.countdownTimer {
+  background-color: #ebc932;
+  border: 2px solid #d5b215;
+  border-bottom: 4px solid #d5b215;
+  border-radius: 20px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .carsContainer {
   width: 100%;
   height: 100%;
@@ -453,4 +467,27 @@
   gap: 20px;
   align-items: center;
   justify-content: center;
+}
+
+.formActionButton {
+  background-color: #ffffff;
+  border: 2px solid #e6e6e6;
+  border-bottom: 4px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 7px 20px;
+  font-size: inherit;
+  font-family: inherit;
+  margin: auto 0 0 0;
+}
+.formActionButton.checkButton {
+  background-color: #98ce98;
+  border: 2px solid #75be75;
+  border-bottom: 4px solid #75be75;
+  border-radius: 10px;
+}
+
+.actionsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }/*# sourceMappingURL=challenge.module.css.map */

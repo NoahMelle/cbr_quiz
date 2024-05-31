@@ -1,9 +1,15 @@
 import React from "react";
 import { useEffect } from "react";
+import styles from "./challenge.module.scss";
 
 const initialSeconds = 15;
 
-export default function Countdown({ timeUp, setTimeUp, isSubmitted, currentQuestion }) {
+export default function Countdown({
+    timeUp,
+    setTimeUp,
+    isSubmitted,
+    currentQuestion,
+}) {
     if (!timeUp) {
         const [seconds, setSeconds] = React.useState(initialSeconds);
         useEffect(() => {
@@ -27,10 +33,6 @@ export default function Countdown({ timeUp, setTimeUp, isSubmitted, currentQuest
             setSeconds(initialSeconds);
         }, [currentQuestion]);
 
-        return (
-            <div>
-                <div>{seconds < 10 ? `0${seconds}` : seconds}</div>
-            </div>
-        );
+        return <div className={styles.countdownTimer}>{seconds < 10 ? `0${seconds}` : seconds}</div>;
     }
 }

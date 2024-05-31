@@ -196,17 +196,18 @@ export default function ChallengePage({ rows }) {
                                 setTimeUp={setTimeUp}
                             />
                         ) : (
-                            <>
-                                <button type="button" onClick={slaVraagOver}>
+                            <div className={styles.actionsContainer}>
+                                <button type="button" onClick={slaVraagOver} className={styles.formActionButton + " " + styles.skipButton} >
                                     Overslaan
                                 </button>
                                 <button
                                     id="endbutton"
+                                    className={styles.formActionButton + " " + styles.checkButton}
                                     disabled={currentValue === null}
                                 >
                                     Controleer
                                 </button>
-                            </>
+                            </div>
                         )}
                     </form>
                 </div>
