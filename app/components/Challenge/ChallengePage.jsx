@@ -70,7 +70,7 @@ export default function ChallengePage({ rows }) {
     // console.log(currentQuestion, questionsAnswered)
 
     function slaVraagOver() {
-        if (currentQuestion - questionsAnswered <= 5) {
+        if (currentQuestion - questionsAnswered <= 1) {
             setCurrentQuestion((prev) => prev + 1);
         }
     }
