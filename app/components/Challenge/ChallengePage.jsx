@@ -3,6 +3,7 @@ import React from "react";
 import ProgressBar from "./ProgressBar";
 import Image from "next/image";
 import styles from "./challenge.module.scss";
+import Link from "next/link";
 import QuestionReview from "./QuestionReview";
 import { decode } from "html-entities";
 import Countdown from "./Countdown";
@@ -88,11 +89,17 @@ export default function ChallengePage({ rows }) {
     return (
         <div>
             {atFinalQuestion ? (
-                <div>
-                    <div>Oefening afgemaakt</div>
-                    <div>behaalde score: {score}</div>
-                    <div>accuratie: {accuratie}</div>
-                    <a href="../">terug naar overzicht</a>
+                <div className={styles.questionsSummary}>
+                    <Image 
+                        src="/assets/img/misc/duo-trophy.png"
+                        width={100}
+                        height={100}
+                        alt="Trophy"
+                    />
+                    <h3>Oefening afgemaakt!</h3>
+                    <p>Behaalde score: <b>{score}</b></p>
+                    <p>accuratie: <b>{accuratie}</b>%</p>
+                    <Link href="/" className={styles.terugNaarOverzicht}>Terug naar overzicht</Link>
                 </div>
             ) : (
                 <div>
@@ -204,7 +211,6 @@ export default function ChallengePage({ rows }) {
                     </form>
                 </div>
             )}
-            ;
         </div>
     );
 }
